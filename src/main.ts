@@ -33,7 +33,14 @@ socket.on("error", (error: any) => {
 });
 
 socket.on("event", async (data: any) => {
-  emitEvent(data);
+  const modifiedData = {
+    destination: data.id,
+    label: data.label,
+    type: mapIntToType(data.type),
+    value: data.value,
+  };
+
+  emitEvent(modifiedData);
 });
 
 // Set up the event source connection
@@ -54,3 +61,25 @@ evs.onmessage = (event: MessageEvent) => {
 
   // Loop through EVENT_LABELS and emit the data for each label
 };
+
+function mapIntToType(value: number): string {
+  switch (value) {
+    case 0:
+      return "event";
+
+    case 1:
+      return "timestamp";
+
+    case 2:
+      return "percentage";
+
+    case 3:
+      return "color";
+
+    case 4:
+      return "label";
+
+    default:
+      return "percentage";
+  }
+}
