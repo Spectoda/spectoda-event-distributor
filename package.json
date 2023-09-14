@@ -1,0 +1,28 @@
+{
+  "name": "spectoda-event-distributor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=main,utils tsx .",
+    "generate": "npx drizzle-kit generate:sqlite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.14.6",
+    "debug": "^4.3.4",
+    "dotenv": "^16.3.1",
+    "eventsource": "^2.0.2",
+    "isomorphic-fetch": "^3.0.0",
+    "socket.io-client": "^4.7.2",
+    "tsx": "^3.12.8",
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/eventsource": "^1.1.11",
+    "drizzle-kit": "^0.19.11"
+  }
+}

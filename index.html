@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
+
+    <button>Ask</button>
+    <input type="text" />
+    <script>
+      const socket = io("wss://cloud.host.spectoda.com");
+
+      async function main(socket) {
+        console.log("joining");
+
+        await socket.emit("namespace", "nemak");
+        console.log("joined");
+        socket.emit("event", "hello");
+
+        socket.on("event", data => {
+          console.log("data", data);
+        });
+      }
+
+      socket.on("connection", socket => {});
+      main(socket);
+    </script>
+  </body>
+</html>
