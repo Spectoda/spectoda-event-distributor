@@ -64,22 +64,19 @@ evs.onmessage = (event: MessageEvent) => {
 
 function mapIntToType(value: number): string {
   switch (value) {
-    case 0:
-      return "event";
-
-    case 1:
-      return "timestamp";
-
-    case 2:
+    case 30:
       return "percentage";
 
-    case 3:
+    case 31:
       return "color";
 
-    case 4:
+    case 32:
+      return "timestamp";
+
+    case 33:
       return "label";
 
     default:
-      return "percentage";
+      return "event";
   }
 }
