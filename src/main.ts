@@ -14,6 +14,9 @@ const BASE_URL = "https://cloud.host.spectoda.com"; // replace with your server 
 const NAMESPACE = process.env.NAMESPACE || "";
 const EVENT_LABELS = process.env.EVENT_LABELS ? process.env.EVENT_LABELS.split(",") : [];
 
+debug("Namespace: %s", NAMESPACE);
+debug("Event Labels: %o", EVENT_LABELS);
+
 const socket: Socket = io(BASE_URL);
 
 socket.on("connect", () => {
@@ -42,9 +45,10 @@ evs.onopen = () => {
 
 evs.onmessage = (event: MessageEvent) => {
   const data = JSON.parse(event.data);
-  debug("received event %o", data);
 
   if (EVENT_LABELS.includes(data.label)) {
+    debug("received event %o", data);
+
     socket.volatile.emit("event", data);
   }
 
